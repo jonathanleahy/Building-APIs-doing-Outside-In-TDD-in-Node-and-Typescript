@@ -8,7 +8,10 @@ describe('Get secrets integration tests', () => {
         expect(response.status).toBe(400);
         expect(response.body).toEqual({name: "UrlIdValidationError", message: "UrlId is too short"});
     });
-    xit('should return an error when the secret doesn\'t exist', () => {
+    it('should return an error when the secret doesn\'t exist', async () => {
+        const response = await request.get("/api/v1/secrets/doesntexist")
+        expect(response.status).toBe(404);
+        expect(response.body).toEqual({name: "SecretNotFoundError", message: "Secret was not found in the System"});
     });
     xit('should retrieve a secret from the system', () => {
     });
