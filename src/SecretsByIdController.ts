@@ -1,5 +1,10 @@
+import {Request, Response, NextFunction} from "express";
+import {UrlIdValidationError} from "./UrlIdValidationError";
+
 export class SecretsByIdController {
-    retrieveSecret(retrieveSecret: any) {
-        throw new Error("Method not implemented.")
+    retrieveSecret(request: Request, response: Response, next: NextFunction) {
+        if (request.params.urlId.length <= 10) {
+            next(new UrlIdValidationError("UrlId is too short"))
+        }
     }
 }
