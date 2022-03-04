@@ -1,6 +1,6 @@
-import {UrlIdValidationError} from "../src/UrlIdValidationError";
+import {UrlIdValidationError} from "../../src/UrlIdValidationError";
 import {NextFunction, request, Request, response, Response} from "express";
-import {errorHandler} from "../src/ErrorHandle";
+import {errorHandler} from "../../src/rest/ErrorHandle";
 
 describe("ErrorHandler tests", () => {
     it("should generate an Error response for a UrlIdValidationError", ()=> {
