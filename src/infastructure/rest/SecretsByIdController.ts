@@ -1,7 +1,7 @@
 import {Request, Response, NextFunction} from "express";
-import {SecretNotFoundError} from "../SecretNotFoundError";
-import {UrlId} from "../UrlId";
-import {SecretRetriever} from "../SecretRetriever";
+import {SecretNotFoundError} from "../../domain/errors/SecretNotFoundError";
+import {UrlId} from "../../domain/models/UrlId";
+import {SecretRetriever} from "../../services/SecretRetriever";
 
 export class SecretsByIdController {
 
