@@ -20,7 +20,6 @@ export class MongoSecretRepository implements SecretRepository {
     }
 
     async removeSecretByUrlId(urlId: UrlId): Promise<void> {
-        console.log("Hello")
         await SecretModel.deleteOne({urlId: urlId.toString()})
     }
 }

@@ -44,6 +44,19 @@ describe('Get secrets integration tests', () => {
         expect(SecretModel.deleteOne).toBeCalledTimes(1);
         expect(SecretModel.deleteOne).toBeCalledWith({urlId: "this_does_exist"});
     });
-    it('should throw a 500 error when unexpected error is thrown', () => {
+    it('should throw a 500 error when unexpected error is thrown', async () => {
+        SecretModel.findOne = jest.fn().mockImplementation(async () => {
+            throw new Error("Connection refused")
+        })
+        // @ts-ignore
+        mongoose.connection.readyState = 1
+
+        const response = await request.get("/api/v1/secrets/this_does_exist")
+
+        expect(response.status).toBe(500);
+            expect(response.body).toEqual({
+                name: "InternalServerError",
+                message: "Something went wrong"
+            });
     });
 });
