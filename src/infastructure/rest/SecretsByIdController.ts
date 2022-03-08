@@ -11,7 +11,7 @@ export class SecretsByIdController {
         try {
             const urlId = new UrlId(request.params.urlId)
             const secret = await this.secretRetriever.retrieveSecretByUrlId(urlId)
-            throw new SecretNotFoundError()
+            response.status(200).json(secret)
         } catch (error) {
             next(error)
         }
